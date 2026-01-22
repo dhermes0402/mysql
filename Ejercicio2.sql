@@ -31,6 +31,34 @@ from departamentos join centros
 using (numce)
 where nomce = ' SEDE CENTRAL';
 
+-- 5 Obtener el nombre y el presupuesto de los departamentos que están 
+-- ubicados en la "Sede Central". Este es el procedimiento de obtenga-muestra
+delimiter $$;
+create procedure apartado5a(in ubicacion varchar (20))
+begin
+	select nomde, presude, nomce
+	from departamentos join centros
+	using (numce)
+	where nomce = ubicacion
+    order by 1 desc;
+end $$;
+
+-- 5 ahora hay que hacerlo con el devuelva, varias datos "Procedimiento con 
+-- parámetros de salida"
+drop procedure if exists apartado5b;
+delimiter $$;
+create procedure apartado5b(in nombreCentro varchar (60), out nombreDpto varchar (60),
+out presupuestoDpto decimal(10,2))
+begin
+	select departamentos.nomde, departamentos.presude into nombreDpto, presupuestoDpto
+    from departamentos join centros
+	using (numce)
+    where centros.nomce = nombreCentro
+    limit 1;
+end $$;
+
+-- Devuelve el presupuesto y el nombre del centro de un departamente dado (su nombre)
+
 -- 6
 select nomce, presude
 from centros join departamentos
