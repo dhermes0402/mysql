@@ -92,9 +92,74 @@ end $$;
 
 -- Para ver el nombre del centro de trabajo de cada empleado
 select *
-from empleados
+from empleados;
 
 -- 10
+drop procedure if exists apartado10;
+delimiter $$
+create procedure apartado10(in departamento varchar(20))
+begin
+	select concat_ws(' ' ,nomem, ape1em, ape2em) as NombreCompleto,
+	nomde
+	from empleados join departamentos
+	using (numde)
+	where nomde = departamento;
+end $$
+delimiter ;
+
+-- 11
+drop procedure if exists apartado11;
+delimiter $$
+create procedure apartado11(in departamento varchar(20))
+begin
+	select nomem, nomde
+	from departamentos join dirigir 
+	on departamentos.numde = dirigir.numdepto
+    join empleados
+    on empleados.numem = dirigir.numempdirec
+	where nomde = departamento;
+end $$
+delimiter ;
+
+-- Sirve para mirar todos los departamentos
+select *
+from departamentos;
+
+-- 12 
+drop procedure if exists apartado12;
+delimiter $$
+create procedure apartado12(in centro varchar(20))
+begin
+	select nomde, presude, nomce
+	from departamentos join centros
+	using (numce)
+	where nomce = centro;
+end $$
+delimiter ;
+
+-- 13
+drop procedure if exists apartado13;
+delimiter $$
+create procedure apartado13(in presupuesto1 int(10), in presupuesto2 int(10))
+begin 
+	select nomce, presude
+	from centros join departamentos
+	using (numce)
+	where presude between presupuesto1 and presupuesto2;
+end $$
+delimiter ;
+
+-- 14
+drop procedure if exists apartado14;
+delimiter $$
+create procedure apartado14(in departamento varchar(20))
+begin
+	select distinct extelem, nomde
+	from empleados join departamentos
+	using (numde)
+	where nomde = departamento;
+end $$
+delimiter ;
 
 
 
