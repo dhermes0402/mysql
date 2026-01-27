@@ -77,6 +77,25 @@ from dirigir join empleados
 	on empleados.numem = dirigir.numempdirec
     join departamentos
     on departamentos.numde = dirigir.numdepto;
+    
+-- 9
+drop procedure if exists apartado9;
+delimiter $$;
+create procedure apartado9(in empleado varchar(30), in apellido1 varchar(30))
+begin 
+	select extelem, nomce, nomem
+	from empleados join departamentos
+	using (numde) join centros 
+	using (numce)
+	where nomem = empleado and ape1em = apellido1;
+end $$;
+
+-- Para ver el nombre del centro de trabajo de cada empleado
+select *
+from empleados
+
+-- 10
+
 
 
 
