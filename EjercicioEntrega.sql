@@ -127,4 +127,17 @@ delimiter ;
 call DevNombreYExtelEm (210, @nombre, @extension);
 select @nombre, @extension;
 
+-- Dado un número de empleado devuelve el nombre del departamento en el que se encuentra
+-- Base de datos alterna en la que la clave primaria es numde y numce
+drop procedure if exists BaseDebil;
+delimiter $$
+create procedure BaseDebil(in numeroEmpleado int(10))
+begin
+	select nomde
+	from empleados join departamentos
+		using (numde, numce)
+	where numem = numeroEmpleado;
+end $$
+delimiter ;
+
 
