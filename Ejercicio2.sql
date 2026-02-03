@@ -13,6 +13,8 @@ where nomem = 'Juan' and ape1em = 'López';
 -- 3
 select concat_ws(' ' ,nomem, ape1em, ape2em) as NombreCompleto,
 nomde
+-- Calle y el telefono "C/ Agua nº10 (612381238)"
+concat('C/' , calle, '(' , telefono , ')')
 from empleados join departamentos
 using (numde)
 where nomde = 'PERSONAL' or nomde = 'FINANZAS';

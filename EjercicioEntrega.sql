@@ -15,7 +15,6 @@ drop procedure if exists tareaentregarA;
 delimiter $$;
 create procedure tareaentregarA(in ubicacion INT)
 begin
-
 select dirce
 from empleados join departamentos
 	using (numde)
