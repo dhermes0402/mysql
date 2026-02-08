@@ -49,7 +49,7 @@ where fecinem <= '2025/1/14';
 select concat_ws(' ',nomem, ape1em, ape2em) as nombreCompleto,
 fecinem
 from empleados
-where fecinem between '2023/1/14' and '2025/1/14';
+where fecinem between '2000/1/14' and '2025/1/14';
 
 
 -- apuntes
