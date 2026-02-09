@@ -257,7 +257,7 @@ create procedure a3(in departamento varchar(20))
 begin
 	select nomem
 	from empleados join dirigir
-	on empxleados.numem = dirigir.numempdirec
+	on empleados.numem = dirigir.numempdirec
 	join departamentos
 	on departamentos.numde = dirigir.numdepto
 	where nomde = departamento;
