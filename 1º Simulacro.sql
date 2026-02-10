@@ -121,8 +121,24 @@ from casas;
 
 
 
+-- 9 
+drop procedure if exists m9;
+delimiter $$
+create procedure m9(in zona int(10))
+begin
+	select count(codreserva) as numeroReservas
+    from reservas join casas
+    using (codcasa) join zonas
+    on casas.codzona = zonas.numzona
+    where codzona = zona and year (fecreserva) = year(curdate());
+end $$
+delimiter ;
 
-
-
-
-
+-- 10
+select 
+avg(m2),
+max(numbanios),
+max(numhabit)
+from casas;
+    
+    
