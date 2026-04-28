@@ -47,6 +47,42 @@ BEGIN
 END $$
 delimiter ;
 
+-- Cuerpo del trigger
+-- Update
+BEGIN
+   UPDATE tabla
+   SET campo = nuevo_valor
+   WHERE id = NEW.id;
+END;
+
+-- Otro
+BEGIN
+   UPDATE tabla
+   SET total = (
+       SELECT COUNT(*)
+       FROM otra_tabla
+       WHERE condicion
+   )
+   WHERE id = OLD.id;
+END;
+
+-- Insert 
+BEGIN
+   INSERT INTO pedidos (idproducto, fecha)
+   VALUES (NEW.idproducto, NOW());
+END;
+
+-- Delete
+BEGIN
+   DELETE FROM detalles
+   WHERE idpedido = OLD.id;
+END;
+
+-- Añadir tablas
+alter table articulos
+	add column stock int not null default 0;
+
+
 -- EJEMPLO EVENTOS
 -- Cada mes, la empresa debe generar automáticamente los recibos de los clientes.
 CREATE EVENT generar_recibos
@@ -73,32 +109,5 @@ CREATE UNIQUE INDEX idx_nif ON cliente(nif);
 
 -- MULTICOLUMNA
 CREATE INDEX idx_nombre_apellido ON cliente(nombre, apellido);
-
--- Right y Left join
-
-
--- BDTurismoRural
--- Listado de nombre las casas y el número de reservas que se han 
--- hecho y no estén anuladas
-select nomcasa, count(codreserva) as númeroReservas
-from casas left join reservas
-using (codcasa)
-where fecanulacion is null
-group by nomcasa;
-
-show index from empleados;
-
-select *
-from empleados ignore index(nombresEmpleados)
-where nomem = 'eva';
-
-
-
-
-
-
-
-
-
 
 
