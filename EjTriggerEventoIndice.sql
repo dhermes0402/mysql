@@ -74,4 +74,31 @@ CREATE UNIQUE INDEX idx_nif ON cliente(nif);
 -- MULTICOLUMNA
 CREATE INDEX idx_nombre_apellido ON cliente(nombre, apellido);
 
+-- Right y Left join
+
+
+-- BDTurismoRural
+-- Listado de nombre las casas y el número de reservas que se han 
+-- hecho y no estén anuladas
+select nomcasa, count(codreserva) as númeroReservas
+from casas left join reservas
+using (codcasa)
+where fecanulacion is null
+group by nomcasa;
+
+show index from empleados;
+
+select *
+from empleados ignore index(nombresEmpleados)
+where nomem = 'eva';
+
+
+
+
+
+
+
+
+
+
 
