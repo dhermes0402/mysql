@@ -110,4 +110,10 @@ CREATE UNIQUE INDEX idx_nif ON cliente(nif);
 -- MULTICOLUMNA
 CREATE INDEX idx_nombre_apellido ON cliente(nombre, apellido);
 
+create index tetitas on centros(codpostal);
+
+select * from centros order by codpostal desc;
+
+
+
 
